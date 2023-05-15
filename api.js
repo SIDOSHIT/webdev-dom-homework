@@ -1,4 +1,4 @@
-import { renderList } from "./render.js";
+import { app, renderList } from "./render.js";
 export const descrElement = document.getElementById("text-input");
 export const nameElement = document.getElementById("name-input");
 export const buttonAddElement = document.getElementById("button-add");
@@ -7,7 +7,7 @@ export let comment = [];
 
 export const getFetch = () => {
   let changeText = () => {
-    return (listElement.textContent = "подождите немного");
+    return (app.textContent = "подождите немного");
   };
 
   changeText();
