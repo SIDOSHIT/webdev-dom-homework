@@ -5,18 +5,23 @@ export const buttonAddElement = document.getElementById("button-add");
 export const listElement = document.getElementById("list");
 export let comment = [];
 
+let host = "https://webdev-hw-api.vercel.app/api/v2/gromov-danil/comments";
+
+
+let token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
+
 export const getFetch = () => {
   let changeText = () => {
     return (listElement.textContent = "подождите немного");
   };
 
   changeText();
-  return fetch(
-    "https://webdev-hw-api.vercel.app/api/v1/gromov-danil/comments",
-    {
-      method: "GET",
+  return fetch(host, {
+    method: "GET",
+    headers: {
+      Authorization: token
     }
-  )
+  })
     .then((response) => {
       changeText();
       return response.json();
@@ -25,23 +30,15 @@ export const getFetch = () => {
       comment = responseData.comments;
       renderList();
     });
-
-  // подписываемся на успешное завершение запроса с помощью then
-  // fetchPromise.then((response) => {
-  // Запускаем преобразовываем "сырые" данные от API в json формат
-  // const jsonPromise = response.json();
-
-  // Подписываемся на результат преобразования
-  // jsonPromise.then((responseData) => {
-  // получили данные и рендерим их в приложении
-  //   });
-  // });
 };
 export const addTodo = () => {
   buttonAddElement.disabled = true;
   buttonAddElement.textContent = "Элемент добавлятся...";
-  fetch("https://webdev-hw-api.vercel.app/api/v1/gromov-danil/comments", {
+  fetch(host, {
     method: "POST",
+    headers: {
+      Authorization: token
+    },
     body: JSON.stringify({
       text: descrElement.value
         .replaceAll("&", "&amp;")
