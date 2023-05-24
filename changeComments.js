@@ -1,5 +1,5 @@
-import { descrElement } from "./api.js";
-import { renderList } from "./render.js";
+// import { descrElement } from "./api.js";
+// import { renderList } from "./render.js";
 
 export function changeComment() {
   const changeTextComment = document.querySelectorAll(".comment-text");

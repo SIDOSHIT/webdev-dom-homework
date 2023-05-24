@@ -2,20 +2,21 @@ import { renderList } from "./render.js";
 export const descrElement = document.getElementById("text-input");
 export const nameElement = document.getElementById("name-input");
 export const buttonAddElement = document.getElementById("button-add");
-export const listElement = document.getElementById("list");
+// export const listElement = document.getElementById("list");
+export const appEl = document.getElementById("app");
 export let comment = [];
 
 let host = "https://webdev-hw-api.vercel.app/api/v2/gromov-danil/comments";
 
 
-let token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
+export let token = null;
 
 export const getFetch = () => {
-  let changeText = () => {
-    return (listElement.textContent = "подождите немного");
-  };
+  // let changeText = () => {
+  //   return (listElement.textContent = "подождите немного");
+  // };
 
-  changeText();
+  // changeText();
   return fetch(host, {
     method: "GET",
     headers: {
@@ -23,7 +24,7 @@ export const getFetch = () => {
     }
   })
     .then((response) => {
-      changeText();
+      // changeText();
       return response.json();
     })
     .then((responseData) => {
