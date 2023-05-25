@@ -1,17 +1,9 @@
 import getListElemenets from "./list.js";
-import {
-  addTodo,
-  appEl,
-  buttonAddElement,
-  comment,
-  descrElement,
-  nameElement,
-  token,
-} from "./api.js";
+import { appEl, comment, token } from "./api.js";
 import { initButtonsLikes } from "./buttonLikesElement.js";
 import { changeComment } from "./changeComments.js";
 import { renderAuthFormComponent } from "./authFromComponent.js";
-export const renderList = () => {
+export const renderApp = () => {
   const commentListComment = comment
     .map((comment, index) => getListElemenets(comment, index))
     .join("");

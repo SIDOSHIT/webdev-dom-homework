@@ -1,5 +1,5 @@
 import { comment } from "./api.js";
-import { renderList } from "./render.js";
+import { renderApp } from "./render.js";
 
 export function initButtonsLikes() {
   const numberLikesElements = document.querySelectorAll(".like-button");
@@ -17,7 +17,7 @@ export function initButtonsLikes() {
         comment[index].likes -= 1;
         comment[index].isLiked = false;
       }
-      renderList();
+      renderApp();
     });
   }
 }

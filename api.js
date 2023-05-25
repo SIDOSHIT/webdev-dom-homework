@@ -1,4 +1,4 @@
-import { renderList } from "./render.js";
+import { renderApp } from "./render.js";
 export const descrElement = document.getElementById("text-input");
 export const nameElement = document.getElementById("name-input");
 export const buttonAddElement = document.getElementById("button-add");
@@ -29,7 +29,7 @@ export const getFetch = () => {
     })
     .then((responseData) => {
       comment = responseData.comments;
-      renderList();
+      renderApp();
     });
 };
 export const addTodo = () => {
@@ -59,14 +59,13 @@ export const addTodo = () => {
     .then((response) => {
       console.log(response);
       if (response.status === 400) {
-        return alert("Ведите в поле больше 2-ух символов");
+        throw new Error("Ведите в поле больше 2-ух символов");
       }
       if (response.status === 500) {
-        return alert("Сервер лег");
+        throw new Error("Сервер лег");
       }
       return response.json();
     })
-
     .then(() => {
       // получили данные и рендерим их в приложении
       return getFetch();
