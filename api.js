@@ -7,9 +7,27 @@ export const appEl = document.getElementById("app");
 export let comment = [];
 
 let host = "https://webdev-hw-api.vercel.app/api/v2/gromov-danil/comments";
+const hostLogin = "https://wedev-api.sky.pro/api/user/login";
+
+let token = null;
+let userName = "";
+
+export const setToken = (newToken) => {
+  token = newToken;
+};
+
+export const getToken = () => {
+  return token;
+};
 
 
-export let token = null;
+export const setUserName = (newName) => {
+  userName = newName;
+};
+
+export const getUserName = () => {
+  return userName;
+};
 
 export const getFetch = () => {
   // let changeText = () => {
@@ -20,8 +38,8 @@ export const getFetch = () => {
   return fetch(host, {
     method: "GET",
     headers: {
-      Authorization: token
-    }
+      Authorization: getToken(),
+    },
   })
     .then((response) => {
       // changeText();
@@ -38,7 +56,7 @@ export const addTodo = () => {
   fetch(host, {
     method: "POST",
     headers: {
-      Authorization: token
+      Authorization: token,
     },
     body: JSON.stringify({
       text: descrElement.value
@@ -82,5 +100,37 @@ export const addTodo = () => {
       alert("Кажется, что-то пошло не так, попробуй позже");
       // TODO: Отправлять в систему сбора ошибок
       console.warn(error);
+    });
+};
+
+export const loginUser = (login, password) => {
+  return fetch(hostLogin, {
+    method: "POST",
+    headers: {
+      Authorization: getToken(),
+    },
+    body: JSON.stringify({
+      login: login,
+      password: password,
+    }),
+  })
+    .then((response) => {
+      console.log(response);
+      if (response.status === 400) {
+        throw new Error("Неправильно введен логин или пароль");
+      }
+      if (response.status === 500) {
+        throw new Error("Сервер лег");
+      }
+      return response.json();
+    })
+    .then((response) => {
+      setToken(response.user.token);
+      setUserName(response.user.name)
+      return;
+    })
+    .catch((error) => {
+      alert(error.message);
+      console.log(error);
     });
 };

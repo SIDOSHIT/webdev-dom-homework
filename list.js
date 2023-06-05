@@ -1,5 +1,3 @@
-import { comment } from "./api.js";
-
 const getListElemenets = (comment, index) => {
   return `<li class="comment">
                      <div class="comment-header">

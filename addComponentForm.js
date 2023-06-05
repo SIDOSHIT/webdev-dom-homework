@@ -1,10 +1,13 @@
-const addFormComponent = () => {
+import { buttonAddElement, descrElement, getUserName, nameElement } from "./api.js";
+
+export const addFormComponent = () => {
   return `  <div class="add-form">
                 <input
                 id="name-input"
                 type="text"
                 class="add-form-name"
-                placeholder="Введите ваше имя"
+                value="${getUserName()}"
+                disabled
                 />
                 <textarea
                 id="text-input"
@@ -20,5 +23,66 @@ const addFormComponent = () => {
                     Удалить последний комментарий
                 </button>
                 </div>
-            </div>`;
+                </div>
+            `;
+};
+
+export const renderAddFormComponent = (root) => {
+  root.innerHTML = addFormComponent();
+  nameElement.addEventListener("input", () => {
+    if (nameElement.value === "" || descrElement.value === "") {
+      buttonAddElement.disabled = true;
+    } else {
+      buttonAddElement.disabled = false;
+    }
+  });
+
+  descrElement.addEventListener("input", () => {
+    if (nameElement.value === "" || descrElement.value === "") {
+      buttonAddElement.disabled = true;
+    } else {
+      buttonAddElement.disabled = false;
+    }
+  });
+
+  document.addEventListener("keyup", () => {
+    if (event.code === "Enter") {
+      nameElement.classList.remove("error");
+      descrElement.classList.remove("error");
+      nameElement.placeholder;
+      descrElement.placeholder;
+      if (nameElement.value === "" || descrElement.value === "") {
+        nameElement.classList.add("error");
+        descrElement.classList.add("error");
+        nameElement.placeholder = "Впишите данные";
+        descrElement.placeholder = "Впишите данные";
+      } else {
+        buttonAddElement.disabled = false;
+
+        comment.push({
+          name: nameElement.value,
+          descr: descrElement.value,
+        });
+
+        nameElement.value = "";
+        descrElement.value = "";
+      }
+    }
+  });
+
+  buttonAddElement.addEventListener("click", () => {
+    nameElement.classList.remove("error");
+    descrElement.classList.remove("error");
+    nameElement.placeholder;
+    descrElement.placeholder;
+    if (nameElement.value === "" || descrElement.value === "") {
+      nameElement.classList.add("error");
+      descrElement.classList.add("error");
+      nameElement.placeholder = "Впишите данные";
+      descrElement.placeholder = "Впишите данные";
+    } else {
+      buttonAddElement.disabled = false;
+      addTodo();
+    }
+  });
 };

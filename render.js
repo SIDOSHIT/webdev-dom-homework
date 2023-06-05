@@ -1,8 +1,9 @@
 import getListElemenets from "./list.js";
-import { appEl, comment, token } from "./api.js";
+import { appEl, comment, getToken } from "./api.js";
 import { initButtonsLikes } from "./buttonLikesElement.js";
 import { changeComment } from "./changeComments.js";
 import { renderAuthFormComponent } from "./authFromComponent.js";
+import { addFormComponent } from "./addComponentForm.js";
 export const renderApp = () => {
   const commentListComment = comment
     .map((comment, index) => getListElemenets(comment, index))
@@ -11,76 +12,23 @@ export const renderApp = () => {
             <ul id="list" class="comments">
             ${commentListComment}</ul>
             ${
-              token
+              getToken()
                 ? ""
                 : ` <span>
                         Вы не зарегестрированы <a class="login-link">Зарегестрироваться</a>
                     </span>`
             }
+            <div >  ${getToken() ? addFormComponent() : ""}</div>
             </div>`;
 
   appEl.innerHTML = appHTML;
   const loginLink = document.querySelector(".login-link");
-  loginLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    renderAuthFormComponent(appEl);
-  });
-  // nameElement.addEventListener("input", () => {
-  //   if (nameElement.value === "" || descrElement.value === "") {
-  //     buttonAddElement.disabled = true;
-  //   } else {
-  //     buttonAddElement.disabled = false;
-  //   }
-  // });
-
-  // descrElement.addEventListener("input", () => {
-  //   if (nameElement.value === "" || descrElement.value === "") {
-  //     buttonAddElement.disabled = true;
-  //   } else {
-  //     buttonAddElement.disabled = false;
-  //   }
-  // });
-
-  // document.addEventListener("keyup", () => {
-  //   if (event.code === "Enter") {
-  //     nameElement.classList.remove("error");
-  //     descrElement.classList.remove("error");
-  //     nameElement.placeholder;
-  //     descrElement.placeholder;
-  //     if (nameElement.value === "" || descrElement.value === "") {
-  //       nameElement.classList.add("error");
-  //       descrElement.classList.add("error");
-  //       nameElement.placeholder = "Впишите данные";
-  //       descrElement.placeholder = "Впишите данные";
-  //     } else {
-  //       buttonAddElement.disabled = false;
-
-  //       comment.push({
-  //         name: nameElement.value,
-  //         descr: descrElement.value,
-  //       });
-
-  //       nameElement.value = "";
-  //       descrElement.value = "";
-  //     }
-  //   }
-  // });
-
-  // buttonAddElement.addEventListener("click", () => {
-  //   nameElement.classList.remove("error");
-  //   descrElement.classList.remove("error");
-  //   nameElement.placeholder;
-  //   descrElement.placeholder;
-  //   if (nameElement.value === "" || descrElement.value === "") {
-  //     nameElement.classList.add("error");
-  //     descrElement.classList.add("error");
-  //     nameElement.placeholder = "Впишите данные";
-  //     descrElement.placeholder = "Впишите данные";
-  //   } else {
-  //     buttonAddElement.disabled = false;
-  //     addTodo();
-  //   }
-  // });
+  if (loginLink !== null) {
+    loginLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      renderAuthFormComponent(appEl);
+    });
+  }
   initButtonsLikes();
   changeComment();
 };
