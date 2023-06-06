@@ -1,7 +1,5 @@
 import { renderApp } from "./render.js";
-export const descrElement = document.getElementById("text-input");
-export const nameElement = document.getElementById("name-input");
-export const buttonAddElement = document.getElementById("button-add");
+
 // export const listElement = document.getElementById("list");
 export const appEl = document.getElementById("app");
 export let comment = [];

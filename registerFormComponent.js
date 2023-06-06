@@ -1,4 +1,4 @@
-import { regUser } from "./api.js";
+import { getFetch, regUser } from "./api.js";
 import { renderApp } from "./render.js";
 
 export const registerUsersComponent = () => {
@@ -45,7 +45,7 @@ export const renderRegisterForm = (root) => {
   regButtonUser.addEventListener("click", () => {
     regUser(regLoginUser.value, regPasswordUser.value, regNameUser.value).then(
       () => {
-        renderApp();
+        getFetch();
       }
     );
   });

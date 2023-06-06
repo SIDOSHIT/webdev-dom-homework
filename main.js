@@ -1,4 +1,4 @@
-import { descrElement, getFetch, nameElement } from "./api.js";
+import { getFetch } from "./api.js";
 
 
 getFetch();

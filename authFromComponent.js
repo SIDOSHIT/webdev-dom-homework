@@ -1,6 +1,5 @@
-import { loginUser } from "./api.js";
+import { getFetch, loginUser } from "./api.js";
 import { renderRegisterForm } from "./registerFormComponent.js";
-import { renderApp } from "./render.js";
 
 const authFromComponent = () => {
   return `   
@@ -39,7 +38,7 @@ export const renderAuthFormComponent = (root) => {
 
   buttonAddUser.addEventListener("click", () => {
     loginUser(loginInput.value, passwordInput.value).then(() => {
-      renderApp();
+      getFetch();
     });
   });
   buttonRegUser.addEventListener("click", () => {

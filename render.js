@@ -3,7 +3,7 @@ import { appEl, comment, getToken } from "./api.js";
 import { initButtonsLikes } from "./buttonLikesElement.js";
 import { changeComment } from "./changeComments.js";
 import { renderAuthFormComponent } from "./authFromComponent.js";
-import { addFormComponent } from "./addComponentForm.js";
+import { renderAddFormComponent } from "./addComponentForm.js";
 export const renderApp = () => {
   const commentListComment = comment
     .map((comment, index) => getListElemenets(comment, index))
@@ -18,7 +18,7 @@ export const renderApp = () => {
                         Вы не зарегестрированы <a class="login-link">Зарегестрироваться</a>
                     </span>`
             }
-            <div >  ${getToken() ? addFormComponent() : ""}</div>
+            <div >  ${getToken() ? renderAddFormComponent() : ""}</div>
             </div>`;
 
   appEl.innerHTML = appHTML;
