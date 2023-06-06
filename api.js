@@ -8,6 +8,7 @@ export let comment = [];
 
 let host = "https://webdev-hw-api.vercel.app/api/v2/gromov-danil/comments";
 const hostLogin = "https://wedev-api.sky.pro/api/user/login";
+const hostReg = "https://wedev-api.sky.pro/api/user";
 
 let token = null;
 let userName = "";
@@ -19,7 +20,6 @@ export const setToken = (newToken) => {
 export const getToken = () => {
   return token;
 };
-
 
 export const setUserName = (newName) => {
   userName = newName;
@@ -126,8 +126,36 @@ export const loginUser = (login, password) => {
     })
     .then((response) => {
       setToken(response.user.token);
-      setUserName(response.user.name)
+      setUserName(response.user.name);
       return;
+    })
+    .catch((error) => {
+      alert(error.message);
+      console.log(error);
+    });
+};
+
+export const regUser = (login, password, name) => {
+  return fetch(hostReg, {
+    method: "POST",
+    headers: {
+      Authorization: getToken(),
+    },
+    body: JSON.stringify({
+      login: login,
+      name: name,
+      password: password,
+    }),
+  })
+    .then((response) => {
+      console.log(response);
+      if (response.status === 400) {
+        throw new Error("Пользователь с таким логин уже существует");
+      }
+      if (response.status === 500) {
+        throw new Error("Сервер лег");
+      }
+      return response.json();
     })
     .catch((error) => {
       alert(error.message);

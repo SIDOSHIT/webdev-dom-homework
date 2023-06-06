@@ -1,7 +1,6 @@
-import { getToken, loginUser, setToken } from "./api.js";
+import { loginUser } from "./api.js";
+import { renderRegisterForm } from "./registerFormComponent.js";
 import { renderApp } from "./render.js";
-
-
 
 const authFromComponent = () => {
   return `   
@@ -32,9 +31,9 @@ const authFromComponent = () => {
 };
 
 export const renderAuthFormComponent = (root) => {
-  console.log(root);
   root.innerHTML = authFromComponent();
   const buttonAddUser = document.getElementById("login-add");
+  const buttonRegUser = document.getElementById("login-reg");
   const loginInput = document.getElementById("login-input");
   const passwordInput = document.getElementById("password-input");
 
@@ -42,5 +41,8 @@ export const renderAuthFormComponent = (root) => {
     loginUser(loginInput.value, passwordInput.value).then(() => {
       renderApp();
     });
+  });
+  buttonRegUser.addEventListener("click", () => {
+    renderRegisterForm(root);
   });
 };

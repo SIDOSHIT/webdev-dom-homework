@@ -1,4 +1,9 @@
-import { buttonAddElement, descrElement, getUserName, nameElement } from "./api.js";
+import {
+  buttonAddElement,
+  descrElement,
+  getUserName,
+  nameElement,
+} from "./api.js";
 
 export const addFormComponent = () => {
   return `  <div class="add-form">
@@ -29,60 +34,60 @@ export const addFormComponent = () => {
 
 export const renderAddFormComponent = (root) => {
   root.innerHTML = addFormComponent();
-  nameElement.addEventListener("input", () => {
-    if (nameElement.value === "" || descrElement.value === "") {
-      buttonAddElement.disabled = true;
-    } else {
-      buttonAddElement.disabled = false;
-    }
-  });
+  // nameElement.addEventListener("input", () => {
+  //   if (nameElement.value === "" || descrElement.value === "") {
+  //     buttonAddElement.disabled = true;
+  //   } else {
+  //     buttonAddElement.disabled = false;
+  //   }
+  // });
 
-  descrElement.addEventListener("input", () => {
-    if (nameElement.value === "" || descrElement.value === "") {
-      buttonAddElement.disabled = true;
-    } else {
-      buttonAddElement.disabled = false;
-    }
-  });
+  // descrElement.addEventListener("input", () => {
+  //   if (nameElement.value === "" || descrElement.value === "") {
+  //     buttonAddElement.disabled = true;
+  //   } else {
+  //     buttonAddElement.disabled = false;
+  //   }
+  // });
 
-  document.addEventListener("keyup", () => {
-    if (event.code === "Enter") {
-      nameElement.classList.remove("error");
-      descrElement.classList.remove("error");
-      nameElement.placeholder;
-      descrElement.placeholder;
-      if (nameElement.value === "" || descrElement.value === "") {
-        nameElement.classList.add("error");
-        descrElement.classList.add("error");
-        nameElement.placeholder = "Впишите данные";
-        descrElement.placeholder = "Впишите данные";
-      } else {
-        buttonAddElement.disabled = false;
+  // document.addEventListener("keyup", () => {
+  //   if (event.code === "Enter") {
+  //     nameElement.classList.remove("error");
+  //     descrElement.classList.remove("error");
+  //     nameElement.placeholder;
+  //     descrElement.placeholder;
+  //     if (nameElement.value === "" || descrElement.value === "") {
+  //       nameElement.classList.add("error");
+  //       descrElement.classList.add("error");
+  //       nameElement.placeholder = "Впишите данные";
+  //       descrElement.placeholder = "Впишите данные";
+  //     } else {
+  //       buttonAddElement.disabled = false;
 
-        comment.push({
-          name: nameElement.value,
-          descr: descrElement.value,
-        });
+  //       comment.push({
+  //         name: nameElement.value,
+  //         descr: descrElement.value,
+  //       });
 
-        nameElement.value = "";
-        descrElement.value = "";
-      }
-    }
-  });
+  //       nameElement.value = "";
+  //       descrElement.value = "";
+  //     }
+  //   }
+  // });
 
-  buttonAddElement.addEventListener("click", () => {
-    nameElement.classList.remove("error");
-    descrElement.classList.remove("error");
-    nameElement.placeholder;
-    descrElement.placeholder;
-    if (nameElement.value === "" || descrElement.value === "") {
-      nameElement.classList.add("error");
-      descrElement.classList.add("error");
-      nameElement.placeholder = "Впишите данные";
-      descrElement.placeholder = "Впишите данные";
-    } else {
-      buttonAddElement.disabled = false;
-      addTodo();
-    }
-  });
+  // buttonAddElement.addEventListener("click", () => {
+  //   nameElement.classList.remove("error");
+  //   descrElement.classList.remove("error");
+  //   nameElement.placeholder;
+  //   descrElement.placeholder;
+  //   if (nameElement.value === "" || descrElement.value === "") {
+  //     nameElement.classList.add("error");
+  //     descrElement.classList.add("error");
+  //     nameElement.placeholder = "Впишите данные";
+  //     descrElement.placeholder = "Впишите данные";
+  //   } else {
+  //     buttonAddElement.disabled = false;
+  //     addTodo();
+  //   }
+  // });
 };

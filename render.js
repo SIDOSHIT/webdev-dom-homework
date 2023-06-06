@@ -31,4 +31,5 @@ export const renderApp = () => {
   }
   initButtonsLikes();
   changeComment();
+  
 };
