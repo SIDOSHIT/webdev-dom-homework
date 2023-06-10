@@ -1,8 +1,5 @@
 import {
-  buttonAddElement,
-  descrElement,
-  getUserName,
-  nameElement,
+  getUserName
 } from "./api.js";
 
 export const addFormComponent = () => {
@@ -20,7 +17,6 @@ export const addFormComponent = () => {
                 class="add-form-text"
                 placeholder="Введите ваш коментарий"
                 rows="4"
-                v-on:keydown.ctrl.enter="submitForm"
                 ></textarea>
                 <div class="add-form-row">
                 <button id="button-add" class="add-form-button">Написать</button>
